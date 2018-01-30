@@ -12,6 +12,7 @@ void setup(){
   pinMode(r_led, OUTPUT);
   pinMode(b_led, OUTPUT);
   pinMode(g_led, OUTPUT);
+  Serial.begin(9600);
 }
 
 
@@ -42,15 +43,22 @@ void loop(){
   //read in analog inputs from LEDs from board. Input arguments are 
   //ports on board
   val_r = analogRead(A0);
-  val_g = analogRead(A5);  //double check values on ports!!!
-  val_b = analogRead(A6);
+  val_g = analogRead(A1);  //double check values on ports!!!
+  val_b = analogRead(A2);
   
-  printf("LED Values: red - %f, green - %f, blue - %f\n,",val_r,val_g,val_b);
+  //printf("LED Values: red - %f, green - %f, blue - %f\n,",val_r,val_g,val_b);
   
   //write the compensated color values to an LED 
   analogWrite(r_led, gamma8[val_r/4]);
   analogWrite(g_led, gamma8[val_g/4]);
   analogWrite(b_led, gamma8[val_b/4]);
+  
+  Serial.print(val_r/4);     //need individual print statements
+  Serial.print(",");         //need to print comma individually 
+  Serial.print(val_g/4);
+  Serial.print(",");
+  Serial.println(val_b/4);   //println is the same as \n
+  
   
   /*analogWrite(r_led, 255); //sends full pwm signal to led on board
   delay(1000);         //wait 1000 ms
