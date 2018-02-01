@@ -6,35 +6,34 @@ from pygame.locals import*
 
 
 s = serial.Serial("/dev/ttyACM0")	#serial port that we read from
-def main():   				#starts main function, don't use naked code!
-  print("int main")
-  pygame.init()
-  #FPS = 30  #set FPS to 30
-  #fpsClock = pygame.time.Clock()
-  DISPLAYSURF = pygame.display.set_mode((400, 300))	#DISPLAYSURF is just a variable
-  #also possible to use pygame.Rect to create a rectangle
-  while True:
+   				#starts main function, don't use naked code!
+pygame.init()
+#FPS = 30  #set FPS to 30
+#fpsClock = pygame.time.Clock()
+DISPLAYSURF = pygame.display.set_mode((400, 300))	#DISPLAYSURF is just a variable
+#also possible to use pygame.Rect to create a rectangle
+while True:
     
 
-    l = s.readline()			#l reads from arduino code imported from serial (s.)
-    x = l.rstrip().split(",")		#splits values separated by commas
+  l = s.readline()			#l reads from arduino code imported from serial (s.)
+  x = l.rstrip().split(",")		#splits values separated by commas
     
-    try:				#tells loop to try condition
-      rgb = [int(val) for val in x]	#passes in rgb values 
+  try:				#tells loop to try condition
+    rgb = [int(val) for val in x]	#passes in rgb values 
 
-      #help received from 1/C Davidson
-      DISPLAYSURF.fill(rgb)			#screen fill turns the screen a color rgb
-      #pygame.display.flip()		#updates to new screen	  
-    except ValueError:
-      pass
+    #help received from 1/C Davidson
+    DISPLAYSURF.fill(rgb)			#screen fill turns the screen a color rgb
+    #pygame.display.flip()		#updates to new screen	  
+  except ValueError:
+    pass
   #while True:    
-    for event in pygame.event.get():	#records "events" in pygame (keyboard, clicks, etc)
-      if event.type == QUIT:		#If event is close the window, quit the game	
-        pygame.quit()
-        sys.exit()
-    pygame.display.update()		#update screen with new values
+  for event in pygame.event.get():	#records "events" in pygame (keyboard, clicks, etc)
+    if event.type == QUIT:		#If event is close the window, quit the game	
+      pygame.quit()
+      sys.exit()
+  pygame.display.update()		#update screen with new values
     #fpsClock.tick(FPS)
     
     # You need to call the main function, otherwise it will not run
-    if __name__ == "__main__":
-      main()
+    #if __name__ == "__main__":
+    #  main()
