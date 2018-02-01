@@ -33,7 +33,7 @@ while True:
       sys.exit()
   pygame.display.update()		#update screen with new values
     #fpsClock.tick(FPS)
-    
+  print(rgb)  
     # You need to call the main function, otherwise it will not run
     #if __name__ == "__main__":
     #  main()
